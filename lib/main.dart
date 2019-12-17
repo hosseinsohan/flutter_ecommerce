@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_pro/carousel_pro.dart';
+
+import 'components/horizontal_listview.dart';
 
 
 void main(){
@@ -21,10 +24,32 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    Widget image_carousel = new Container(
+      height: 200.0,
+      child: new Carousel(
+        images: [
+          AssetImage('images/slide1.jpg'),
+          AssetImage('images/slide2_.jpg'),
+          AssetImage('images/slide3.jpg'),
+          AssetImage('images/slide4.jpg')
+        ],
+        autoplay: true,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds: 1000),
+        dotSize: 4.0,
+        indicatorBgPadding: 4.0,
+      ),
+    );
+
+
     return Scaffold(
 
+      //------------------------------------------------------------------------------
+      //------------------------------------------------------------------------------
+      //------------------------------------------------------------------------------appbar
+      //------------------------------------------------------------------------------
+      //------------------------------------------------------------------------------
       appBar: new AppBar(
-
         backgroundColor: Colors.red,
         centerTitle: true,
         title: Text("فروشگاه آنلاین"),
@@ -33,6 +58,14 @@ class _HomePageState extends State<HomePage> {
           new IconButton(icon: Icon(Icons.shopping_cart), onPressed: (){})
         ],
       ),
+
+
+
+      //------------------------------------------------------------------------------
+      //------------------------------------------------------------------------------
+      //------------------------------------------------------------------------------drawer
+      //------------------------------------------------------------------------------
+      //------------------------------------------------------------------------------
       drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
@@ -110,6 +143,23 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+
+
+      body: new ListView(
+        children: <Widget>[
+          image_carousel,
+
+          //padding widget
+          new Padding(
+            padding: EdgeInsets.all(8.0),
+            child:Text("دسته بندی ها") ,),
+
+          //horizontal listview
+          HorizontalList(),
+
+        ],
+      ),
     );
   }
 }
+
